@@ -1,0 +1,11 @@
+version: '3'
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: deploy.Dockerfile
+      context: ./docker_nginx
+    volumes:
+      - ./Nginx/logs:/var/log/nginx
+    ports:
+      - '80:80'
