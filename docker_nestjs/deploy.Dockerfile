@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14-alpine as builder
 
 #commands to be executed during image creation
 # RUN npm install -g @nestjs/cli \
@@ -16,3 +16,8 @@ RUN npm install
 CMD ["npm", "run", "start"]
 
 EXPOSE 3000
+
+#executable container with compile files
+FROM alpine:3.15
+COPY --from=builder /go-app .
+ENTRYPOINT ["./go-app"]
