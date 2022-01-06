@@ -1,0 +1,2 @@
+user default on +@all ~* >{12324567890!@#$%^&*()}
+user {js3322} on -@all +get +set +select ~* >{12324567890!@#$%^&*()} 
