@@ -14,14 +14,21 @@ type requestResult struct {
 var errRequestFailed = errors.New("Request failed")
 
 func main() {
+	API_KEY := "testcode"
 	urls := []string{
-		"https://www.airbnb.com/",
 		"https://www.cleancode.shop/",
+		"https://www.cleancode.kr/",
+		"http://web.cleancode.kr/",
+		"http://code.cleancode.kr/",
+		"https://web.cleancode.kr/",
+		"http://api.ganada.kr/",
+		"http://www.ganada.kr/",
+		"http://code.ganada.kr/",
+		"http://code.web.cleancode.kr/",
 		"https://www.google.com/",
-		"https://www.amazon.com/",
 		"https://www.naver.com/",
-		"https://www.facebook.com/",
 		"https://www.instagram.com/",
+		"https://api.themoviedb.org/3/movie/popular?api_key="+API_KEY,
 	}
 	results := make(map[string]string)
 	c := make(chan requestResult)
