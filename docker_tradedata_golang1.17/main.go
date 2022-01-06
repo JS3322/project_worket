@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 
-	_ "github.com/JS3322/project_worket/docker_tradedata_golang1.17"
+	"github.com/JS3322/project_worket/docker_tradedata_golang1.17/blockchain"
 )
 
 func main() {
