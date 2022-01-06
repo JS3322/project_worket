@@ -8,11 +8,13 @@ Worket
 
 ---
 ### TODO List | Route
-- [ ] hotreload golang & python3.8 & node.js14 docker basic setting
-- [ ] init DB server
-- [ ] DB connect Server
+- [x] hotreload golang & python3.8 & node.js14 docker basic setting
+- [x] init DB server
+- [x] DB connect Server
 - [ ] init Data Relationship
 - [ ] API server connects to the scraping computation server with the gRPC protocol
+- [ ] make env file
+- [x] K8s setting image
 
 ---
 ### Import Library

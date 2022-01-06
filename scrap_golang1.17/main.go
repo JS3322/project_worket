@@ -12,8 +12,10 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+var saveDataDir string = "../visualdashboard_python3.8/src/data/"
+
 // 16진수 변환 압축 이슈 체크
-var searchKeyword string = "코로나"
+var searchKeyword string = "golang"
 var baseURL string = "https://kr.indeed.com/jobs?q=" + url.QueryEscape(searchKeyword)
 var scrapURL string = "https://www.bigdata-map.kr/search/theme/list?searchKey=" + url.QueryEscape(searchKeyword) + "&typeFilters=API&reSearch=false&history=&platformType=domestic"
 
@@ -42,7 +44,7 @@ func main() {
 
 // 문서 작성 고루틴 이슈 체크
 func writeJobs(jobs []extractedJob) {
-	file, err := os.Create("jobs.csv")
+	file, err := os.Create(saveDataDir + "jobs.csv")
 	checkErr(err)
 
 	w := csv.NewWriter(file)

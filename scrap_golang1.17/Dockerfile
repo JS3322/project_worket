@@ -7,7 +7,8 @@ COPY . .
 RUN apk update && \
     apk add git && \
     go get github.com/cespare/reflex && \
-    go get github.com/lib/pq
+    go get github.com/lib/pq && \
+    go get github.com/PuerkitoBio/goquery
 
 EXPOSE 5000
 
