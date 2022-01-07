@@ -1,9 +1,11 @@
 import dash
 from dash import html
 from dash import dcc
+from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 from data import countries_df
+
 
 stylesheets = [
     "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css",
@@ -56,6 +58,14 @@ app.layout = html.Div(
         #     'textAlign': 'center',
         #     'color': colors['text']
         # }),
+        html.Div(
+            style={"textAlign": "center", "paddingTop": "20px"},
+            children=[
+                dcc.Input(placeholder="Search Code?",
+                          id="hello-input"),
+                html.H2(children="Hello anonymous", id="hello-output"),
+            ]
+        ),
 
         dcc.Graph(
             id='example-graph-2',
@@ -63,6 +73,15 @@ app.layout = html.Div(
         )
     ],
 )
+
+
+@app.callback(Output("hello-output", "children"), [Input("hello-input", "value")])
+def update_hello(value):
+    if value is None:
+        return "Not CODE"
+    else:
+        return f"CODE : {value}"
+
 
 if __name__ == "__main__":
     app.run_server(debug=True, host='0.0.0.0', port=8050)

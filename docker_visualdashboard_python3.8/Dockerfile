@@ -6,6 +6,8 @@ RUN pip3 install pandas dash
 # 이미지 내에서 명령어를 실행할(현 위치로 잡을) 디렉토리 설정
 WORKDIR /
 
+# COPY . /
+
 EXPOSE 8050
 
 # 컨테이너 실행시 실행할 명령어

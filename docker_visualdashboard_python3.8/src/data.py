@@ -2,7 +2,9 @@ import pandas as pd
 
 conditions = ["confirmed", "deaths", "recovered"]
 
-daily_df = pd.read_csv("data/daily_report.csv")
+apple_df = pd.read_csv('src/data/2014_apple_stock.csv')
+jobs_df = pd.read_csv("src/data/jobs.csv")
+daily_df = pd.read_csv("src/data/daily_report.csv")
 
 totals_df = (
     daily_df[["Confirmed", "Deaths", "Recovered"]
@@ -16,7 +18,7 @@ countries_df = countries_df.groupby("Country_Region").sum().reset_index()
 
 def make_country_df(country):
     def make_df(condition):
-        df = pd.read_csv("data/time_confirmed.csv")
+        df = pd.read_csv("src/data/time_confirmed.csv")
         df = df.loc[df["Country/Region"] == country]
         df = (
             df.drop(columns=["Province/State",
@@ -39,7 +41,7 @@ def make_country_df(country):
 
 def make_global_df():
     def make_df(condition):
-        df = pd.read_csv(f"data/time_{condition}.csv")
+        df = pd.read_csv(f"src/data/time_{condition}.csv")
         df = (
             df.drop(["Province/State", "Country/Region", "Lat", "Long"], axis=1)
             .sum()
