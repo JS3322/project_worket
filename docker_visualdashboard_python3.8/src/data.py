@@ -6,6 +6,8 @@ apple_df = pd.read_csv('src/data/2014_apple_stock.csv')
 jobs_df = pd.read_csv("src/data/jobs.csv")
 daily_df = pd.read_csv("src/data/daily_report.csv")
 
+getJob_df = jobs_df[["ID", "TITLE", "COMPANY_NAME", "COMPANY_LOC", "SALARY"]]
+
 totals_df = (
     daily_df[["Confirmed", "Deaths", "Recovered"]
              ].sum().reset_index(name="count")
