@@ -1,20 +1,53 @@
 package main
 
-// oneway hash function
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/JS3322/project_worket/docker_tradedata_golang1.17/blockchain"
+	"log"
+	"net/http"
 )
 
-func main() {
-	chain := blockchain.GetBlockchain()
-	chain.AddBlock("Second Block")
-	chain.AddBlock("Third Block")
-	chain.AddBlock("Fourth Block")
-	for _, block := range chain.AllBlocks() {
-		fmt.Printf("Data: %s\n", block.Data)
-		fmt.Printf("Hash: %s\n", block.Hash)
-		fmt.Printf("Prev Hash: %s\n", block.PrevHash)
+const port string = ":4000"
+
+type URL string
+
+func (u URL) MarshalText() ([]byte, error) {
+	url := fmt.Sprintf("http://localhost%s%s", port, u)
+	return []byte(url), nil
+}
+
+type URLDescription struct {
+	URL         URL    `json:"url"`
+	Method      string `json:"method"`
+	Description string `json:"description"`
+	// omitempty not values is hide
+	Payload string `json:"payload,omitempty"`
+	// `json:"-,"` is field throw
+}
+
+func documentation(rw http.ResponseWriter, r *http.Request) {
+	data := []URLDescription{
+		{
+			URL:         URL("/"),
+			Method:      "GET",
+			Description: "See Documentation",
+		},
+		{
+			URL:         URL("/blocks"),
+			Method:      "POST",
+			Description: "Add A Block",
+			Payload:     "data:string",
+		},
 	}
+	rw.Header().Add("Content-Type", "application/json")
+	json.NewEncoder(rw).Encode(data)
+	// b, err := json.Marshal(data)
+	// utils.HandleError(err)
+	// fmt.Fprintf(rw, "%s", b)
+}
+
+func main() {
+	http.HandleFunc("/", documentation)
+	fmt.Printf("Listening on http://localhost%s", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
