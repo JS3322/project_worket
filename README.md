@@ -15,6 +15,8 @@ Worket
 - [ ] API server connects to the scraping computation server with the gRPC protocol
 - [ ] make env file
 - [x] K8s setting image
+- [ ] configuration of horizontally scalable system using path like dynamic router in server component
+- [ ] use blockchain lib web3 & metamask
 
 ---
 ### Import Library
@@ -22,13 +24,13 @@ Worket
 
 ---
 ### Stay in touch
-- Developer - [JS KIM](https://cleancode.kr)
+- Developer - [JS](https://cleancode.kr)
 
 ---
 ### License
 [MIT licensed](LICENSE)
 
 ---
-*name : JS  
+*name : JS3322  
 *page : cleancode.kr    
 *email : js@cleancode.kr

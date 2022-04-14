@@ -19,5 +19,5 @@ EXPOSE 3000
 
 #executable container with compile files
 FROM alpine:3.15
-COPY --from=builder /go-app .
-ENTRYPOINT ["./go-app"]
+COPY --from=builder /home/node/app .
+ENTRYPOINT ["./home/node/app"]

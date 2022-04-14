@@ -1,0 +1,61 @@
+# FROM node:14-alpine
+
+# #commands to be executed during image creation
+# # RUN npm install -g @nestjs/cli \
+# #     class-transformer class-validator \
+# #     @nestjs/mapped-types
+
+# #set the directory within the image to run commands (to take current location)
+# WORKDIR /home/node/app
+
+# COPY . /home/node/app
+
+# RUN npm install
+
+# #commands to be executed when the container is running
+# CMD ["npm", "run", "start"]
+
+# EXPOSE 3000
+
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get upgrade -y
+
+# install nodejs
+RUN apt-get -qq update
+RUN apt-get -qq upgrade --yes 
+RUN apt-get -qq install curl --yes
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get -qq install nodejs --yes
+
+# # Korean Fonts
+# RUN apt-get --update add fontconfig
+# RUN mkdir -p /usr/share/fonts/nanumfont
+# RUN wget http://cdn.naver.com/naver/NanumFont/fontfiles/NanumFont_TTF_ALL.zip
+# RUN unzip NanumFont_TTF_ALL.zip -d /usr/share/fonts/nanumfont
+# RUN fc-cache -f && rm -rf /var/cache/*
+
+# bash install
+# RUN apk add bash
+
+# Language
+ENV LANG=ko_KR.UTF-8 \
+    LANGUAGE=ko_KR.UTF-8
+
+# Set the timezone in docker
+# RUN apk --no-cache add tzdata && \
+#     cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
+#     echo "Asia/Seoul" > /etc/timezone
+
+# # Create Directory for the Container
+# WORKDIR /app
+
+# # Only copy the package.json file to work directory
+# COPY package.json .
+# RUN npm install
+
+# # Docker Demon Port Mapping
+# EXPOSE 3000
+
+# # Node ENV
+# ENV NODE_ENV=production
